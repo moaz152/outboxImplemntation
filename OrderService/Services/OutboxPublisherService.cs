@@ -21,7 +21,7 @@ public class OutboxPublisherService : BackgroundService
     {
         // fetch db vlues, publish to rabbitmq, mark as published in db, repeat every _options.PollIntervalSeconds seconds
         _logger.LogInformation("OutboxPublisherService started with PollIntervalSeconds={PollIntervalSeconds} and BatchSize={BatchSize}", _options.PollIntervalSeconds, _options.BatchSize);
-        while (stoppingToken.IsCancellationRequested)
+        while (!stoppingToken.IsCancellationRequested)
         {
             try 
             {

@@ -72,9 +72,12 @@ public class RabbitMqPublisher : IRabbitMqPublisher
 
 
     }
-    public ValueTask DisposeAsync()
+    public async ValueTask DisposeAsync()
     {
-        throw new NotImplementedException();
+        if (_channel is not null)
+            await _channel.DisposeAsync();
+        if (_connection is not null)
+            await _connection.DisposeAsync();
     }
 
     

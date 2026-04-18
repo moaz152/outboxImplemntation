@@ -42,10 +42,10 @@ namespace OrderService.Services
 
                 await transaction.CommitAsync();
             }
-            catch (Exception ex)
+            catch
             {
-                transaction.Dispose();
-
+                await transaction.RollbackAsync();
+                throw;
             }
         }
     }
