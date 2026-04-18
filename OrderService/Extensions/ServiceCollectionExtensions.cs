@@ -19,12 +19,15 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IOrderRepository, OrderRepository>();
         services.AddScoped<IOutboxRepository, OutboxRepository>();
+        services.AddScoped<IProcessedMessageRepository, ProcessedMessageRepository>();
 
         services.AddScoped<IOrderService, Services.OrderService>();
+        services.AddScoped<IInventoryFailedHandler, InventoryFailedHandler>();
 
         services.AddSingleton<IRabbitMqPublisher, RabbitMqPublisher>();
 
         services.AddHostedService<OutboxPublisherService>();
+        services.AddHostedService<InventoryFailedConsumerService>();
 
         return services;
     }

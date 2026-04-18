@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace shared.Contract;
 
-namespace shared.Contract
+public class OrderCreatedEvent
 {
-    internal class OrderCreatedEvent
-    {
-    }
+    public int Id { get; set; }
+    public int ProductId { get; set; }
+    public int Quantity { get; set; }
 }
